@@ -1,0 +1,154 @@
+{
+  "version": 1,
+  "projects": {
+    "poe-wallet": {
+      "projectType": "application",
+      "root": "apps/poe-wallet",
+      "sourceRoot": "apps/poe-wallet/src",
+      "prefix": "halkreen",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/poe-wallet",
+            "index": "apps/poe-wallet/src/index.html",
+            "main": "apps/poe-wallet/src/main.ts",
+            "polyfills": "apps/poe-wallet/src/polyfills.ts",
+            "tsConfig": "apps/poe-wallet/tsconfig.app.json",
+            "assets": [
+              "apps/poe-wallet/src/favicon.ico",
+              "apps/poe-wallet/src/assets"
+            ],
+            "styles": ["apps/poe-wallet/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/poe-wallet/src/environments/environment.ts",
+                  "with": "apps/poe-wallet/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "poe-wallet:build:production"
+            },
+            "development": {
+              "browserTarget": "poe-wallet:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "poe-wallet:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/poe-wallet/src/**/*.ts",
+              "apps/poe-wallet/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/poe-wallet"],
+          "options": {
+            "jestConfig": "apps/poe-wallet/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "poe-wallet-e2e": {
+      "root": "apps/poe-wallet-e2e",
+      "sourceRoot": "apps/poe-wallet-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/poe-wallet-e2e/cypress.json",
+            "tsConfig": "apps/poe-wallet-e2e/tsconfig.e2e.json",
+            "devServerTarget": "poe-wallet:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "poe-wallet:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/poe-wallet-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "css"
+    }
+  },
+  "defaultProject": "poe-wallet"
+}
