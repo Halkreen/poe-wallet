@@ -1,6 +1,6 @@
-
-
 # Halkreen
+
+[![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/dc51f928/poe-wallet)
 
 This project was generated using [Nx](https://nx.dev).
 

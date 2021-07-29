@@ -1,7 +1,10 @@
 import { getGreeting } from '../support/app.po';
 
 describe('poe-wallet', () => {
-  beforeEach(() => cy.visit('/'));
+  beforeEach(() => {
+    cy.visit('/')
+    cy.percySnapshot('Homepage test')
+  });
 
   it('should display welcome message', () => {
     // Custom command example, see `../support/commands.ts` file

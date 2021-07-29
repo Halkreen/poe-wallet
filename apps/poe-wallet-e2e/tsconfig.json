@@ -6,5 +6,6 @@
     {
       "path": "./tsconfig.e2e.json"
     }
-  ]
+  ],
+  "types": ["cypress", "@percy/cypress"]
 }
