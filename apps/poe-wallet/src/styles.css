@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --main-bg: rgb(29,29,41);
+  --light-bg: rgb(47,49,65);
+  --light-cta: rgb(63,65,81);
+  --primary-cta: rgb(46,121,241);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--main-bg);
+}
